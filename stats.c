@@ -62,28 +62,64 @@ void main() {
 }
 
 void print_array(unsigned char Test[], int size) {
-
+    printf("--------------\n");
+    for (int j = 0; j < size; j++) {
+        printf("test[%i] = %i \n", j+1, Test[j]);
+    }
 }
 
 void sort_array(unsigned char Test[], int size) {
-
+    for (int j = 0; j < size - 1; j++) {
+        for (int k = j + 1; k < size; k++) {
+            if (Test[j] < Test[k]) {
+                unsigned char aux = Test[k];
+                Test[k] = Test[j];
+                Test[j] = aux;
+            }
+        }
+    }
 }
 
 float find_median(unsigned char Test[], int size) {
+  
+    //median
+    int div = 0;
+    int add = 0;
+    float median = 0;
 
+    if (size % 2 == 0) { //size even?
+        div = size / 2;
+        add = Test[div] + Test[div--];
+        median = add / 2;
+    } else { //odd
+        div = size / 2; //only integer part
+        median = Test[div + 1];
+    }
+
+    return median;
 }
 
 float find_mean(unsigned char Test[], int size) {
-
+    int add = 0;
+    for (int j = 0; j < size; j++) {
+        add += Test[j];
+    }
+    return (add / size);
 }
 
 unsigned char find_minimum(unsigned char Test[], int size) {
-
+    return Test[size-1];
 }
 
 unsigned char find_maximum(unsigned char Test[], int size) {
-
+    return Test[0];
 }
 
-void print_statistics(float median,float mean, unsigned char 
+void print_statistics(float median,float mean, unsigned char minimum,unsigned char maximum){
+    printf("--------------\n");
+    printf("Statistics:\n");
+    printf("Median= %f \n",median);
+    printf("Mean= %f \n",mean);
+    printf("Minimum= %i \n",minimum);
+    printf("Maximum= %i \n",maximum);
 }
